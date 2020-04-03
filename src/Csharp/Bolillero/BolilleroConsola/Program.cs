@@ -22,11 +22,11 @@ namespace BolilleroConsola
             
             // CASO DE UNA SOLA JUGADA
             Console.WriteLine($"Gano: {unBolillero.unaJugada(bolillas)}");
-            informeBolillero(unBolillero);
+            // informeBolillero(unBolillero);
 
             // CASO DE MAS DE UNA JUGADA
-            Console.WriteLine($"Usted gano: {unBolillero.jugarNVeces(bolillas,1000000)} veces");
-            informeBolillero(unBolillero);
+            Console.WriteLine($"Usted gano: {unBolillero.jugarNVeces(bolillas,100000)} veces");
+            // informeBolillero(unBolillero);
         }
         static void informeBolillero(Bolillero bolillero)
         {
