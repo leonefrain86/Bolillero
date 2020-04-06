@@ -6,61 +6,46 @@ namespace BolilleroBiblioteca
 {
     public class Bolillero
     {
-        public List<Bolilla> bolillas {get; set;}
+        public List<int> bolillas {get; set;}
 
         public Bolillero()
         {
-            this.bolillas = new List<Bolilla>{
-                new Bolilla("rojo", 0),
-                new Bolilla("azul", 1),
-                new Bolilla("verde", 2),
-                new Bolilla("negro", 3),
-                new Bolilla("naranja", 4),
-                new Bolilla("violeta", 5),
-                new Bolilla("amarillo", 6),
-                new Bolilla("marón", 7),
-                new Bolilla("griz", 8),
-                new Bolilla("rosado", 9)
-            };
+            bolillas = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         }
 
-        public Bolilla sacarBolilla()
+        public int sacarBolilla()
         {
-            Bolilla bolilla =  this.bolillas[new Random().Next(bolillas.Count())];
+            int bolilla =  this.bolillas[new Random().Next(bolillas.Count())];
             bolillas.Remove(bolilla);
             return bolilla;
+
         }
 
-        public void devolverBolillas(List<Bolilla> bolillas)
-        {
-            foreach (var bolilla in bolillas)
-            {
-                this.bolillas.Add(bolilla);
-            }
-        }
+        public void devolverBolillas(List<int> bolillas) => this.bolillas.AddRange(bolillas);
 
-        public bool unaJugada (List<Bolilla> bolillas)
+
+        public bool unaJugada (List<int> bolillas)
         {
-            int comprobador = 0;
-            List<Bolilla> bolillasSacadas = new List<Bolilla>(); //Cree una lista ya que es mas logico que se devuelvan todas las bolillas al terminar un juego.
-            foreach (var bolilla in bolillas)
+            List<int> bolillasSacadas = new List<int>();
+            foreach (int bolilla  in  bolillas )
             {
                 bolillasSacadas.Add(sacarBolilla());
-                if(bolillasSacadas.Last().num == bolilla.num)
+                if(bolillasSacadas.Last() != bolilla)
                 {
-                    comprobador++;
+                    devolverBolillas(bolillasSacadas);
+                    return false;
                 }
             }
             devolverBolillas(bolillasSacadas);
-            return comprobador == bolillas.Count();
+            return true;
         }
 
-        public int jugarNVeces (List<Bolilla> bolillas, int num)
+        public int jugarNVeces (List<int> bolillas, int num)
         {
             int contador = 0;
             for (int i = 0; i < num; i++)
             {
-                if (unaJugada(bolillas))
+                if (this.unaJugada(bolillas))
                 {
                     contador++;
                 }
