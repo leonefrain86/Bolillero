@@ -7,36 +7,40 @@ namespace BolilleroBiblioteca
     public class Bolillero
     {
         public List<int> bolillas {get; set;}
+        public List<int> bolillasSacadas {get; set;}
 
         public Bolillero()
         {
             bolillas = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            bolillasSacadas = new List<int>();
         }
 
-        public int sacarBolilla()
+        public void sacarBolilla()
         {
             int bolilla =  this.bolillas[new Random().Next(bolillas.Count())];
+            bolillasSacadas.Add(bolilla);
             bolillas.Remove(bolilla);
-            return bolilla;
-
         }
 
-        public void devolverBolillas(List<int> bolillas) => this.bolillas.AddRange(bolillas);
+        public void devolverBolillas() 
+        {
+            this.bolillas.AddRange(bolillasSacadas);
+            this.bolillasSacadas.Clear();
+        }
 
 
         public bool unaJugada (List<int> bolillas)
         {
-            List<int> bolillasSacadas = new List<int>();
             foreach (int bolilla  in  bolillas )
             {
-                bolillasSacadas.Add(sacarBolilla());
+                this.sacarBolilla();
                 if(bolillasSacadas.Last() != bolilla)
                 {
-                    devolverBolillas(bolillasSacadas);
+                    devolverBolillas();
                     return false;
                 }
             }
-            devolverBolillas(bolillasSacadas);
+            devolverBolillas();
             return true;
         }
 

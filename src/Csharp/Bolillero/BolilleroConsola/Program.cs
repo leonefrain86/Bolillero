@@ -18,7 +18,7 @@ namespace BolilleroConsola
             Console.WriteLine($"Gano: {unBolillero.unaJugada(bolillas)}");
 
             // CASO DE MAS DE UNA JUGADA
-            Console.WriteLine($"Usted gano: {unBolillero.jugarNVeces(bolillas,100000)} veces");
+            Console.WriteLine($"Usted gano: {unBolillero.jugarNVeces(bolillas,1000000)} veces");
             informeBolillero(unBolillero);
         }
         static void informeBolillero(Bolillero bolillero)
