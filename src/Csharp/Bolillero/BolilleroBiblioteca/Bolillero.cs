@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BolilleroBiblioteca
 {
-    public class Bolillero
+    public class Bolillero: ICloneable
     {
         public List<int> bolillas {get; set;}
         public List<int> bolillasSacadas {get; set;}
@@ -27,7 +27,6 @@ namespace BolilleroBiblioteca
             this.bolillas.AddRange(bolillasSacadas);
             this.bolillasSacadas.Clear();
         }
-
 
         public bool unaJugada (List<int> bolillas)
         {
@@ -56,8 +55,8 @@ namespace BolilleroBiblioteca
             }
             return contador;
         }
-
-        public Bolillero clonarBolillero() => new Bolillero();
+        
+        public object Clone() => new Bolillero();
                 
     }
 }

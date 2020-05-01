@@ -7,7 +7,6 @@ namespace BolilleroBiblioteca
 {
     public class Simulación
     {
-        // public IClonable clonable {get; set;}
         public int simularSinHilos(Bolillero unBolillero, List<int> unaJugada, int cntSimulaciones) 
                     => unBolillero.jugarNVeces(unaJugada,cntSimulaciones);
 
@@ -18,7 +17,7 @@ namespace BolilleroBiblioteca
 
             for (int i = 0; i < cntHilos; i++)
             {
-                var clon = unBolillero.clonarBolillero();
+                var clon = (Bolillero)unBolillero.Clone();
                 tareas[i] = new Task<int>(() => clon.jugarNVeces(unaJugada, simulacionesPorHilo));
             }
 
