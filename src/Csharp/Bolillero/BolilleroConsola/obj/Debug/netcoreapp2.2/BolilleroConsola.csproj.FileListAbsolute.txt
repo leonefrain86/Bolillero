@@ -12,3 +12,4 @@ C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroCon
 C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroConsola\obj\Debug\netcoreapp2.2\BolilleroConsola.csproj.CopyComplete
 C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroConsola\obj\Debug\netcoreapp2.2\BolilleroConsola.dll
 C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroConsola\obj\Debug\netcoreapp2.2\BolilleroConsola.pdb
+C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroConsola\obj\Debug\netcoreapp2.2\BolilleroConsola.genruntimeconfig.cache

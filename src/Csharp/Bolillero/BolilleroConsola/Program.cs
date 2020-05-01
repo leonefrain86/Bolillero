@@ -12,14 +12,19 @@ namespace BolilleroConsola
             Bolillero unBolillero = new Bolillero();
 
             // SOLO SE USAN 5 BOLILLAS PARA JUGAR
-            List<int> bolillas = new List<int> { 2, 4, 6, 1, 3 };
+            List<int> bolillas = new List<int> { 0 };
             
-            // CASO DE UNA SOLA JUGADA
-            Console.WriteLine($"Gano: {unBolillero.unaJugada(bolillas)}");
+            Simulación s = new Simulación();
 
-            // CASO DE MAS DE UNA JUGADA
-            Console.WriteLine($"Usted gano: {unBolillero.jugarNVeces(bolillas,1000000)} veces");
-            informeBolillero(unBolillero);
+            Console.WriteLine(s.simularSinHilos(unBolillero, bolillas, 400));
+            Console.WriteLine(s.simularConHilos(unBolillero, bolillas, 400, 4));
+
+            // // CASO DE UNA SOLA JUGADA
+            // Console.WriteLine($"Gano: {unBolillero.unaJugada(bolillas)}");
+
+            // // CASO DE MAS DE UNA JUGADA
+            // Console.WriteLine($"Usted gano: {unBolillero.jugarNVeces(bolillas,1000000)} veces");
+            // informeBolillero(unBolillero);
         }
         static void informeBolillero(Bolillero bolillero)
         {

@@ -11,7 +11,7 @@ namespace BolilleroBiblioteca
 
         public Bolillero()
         {
-            bolillas = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            bolillas = new List<int> { 0 };
             bolillasSacadas = new List<int>();
         }
 
@@ -56,5 +56,8 @@ namespace BolilleroBiblioteca
             }
             return contador;
         }
+
+        public Bolillero clonarBolillero() => new Bolillero();
+                
     }
 }
