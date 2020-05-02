@@ -7,33 +7,28 @@ namespace BolilleroBiblioteca
     public class Bolillero: ICloneable
     {
         public List<int> bolillas {get; set;}
-        public List<int> bolillasSacadas {get; set;}
+        public List<int> bolillasClon {get; set;}
 
         public Bolillero()
         {
-            bolillas = new List<int> { 0 };
-            bolillasSacadas = new List<int>();
+            bolillas = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            bolillasClon = new List<int>(bolillas);
         }
 
-        public void sacarBolilla()
+        public int sacarBolilla()
         {
             int bolilla =  this.bolillas[new Random().Next(bolillas.Count())];
-            bolillasSacadas.Add(bolilla);
             bolillas.Remove(bolilla);
+            return bolilla;
         }
 
-        public void devolverBolillas() 
-        {
-            this.bolillas.AddRange(bolillasSacadas);
-            this.bolillasSacadas.Clear();
-        }
+        public void devolverBolillas() => bolillas = new List<int>(bolillasClon);
 
         public bool unaJugada (List<int> bolillas)
         {
             foreach (int bolilla  in  bolillas )
             {
-                this.sacarBolilla();
-                if(bolillasSacadas.Last() != bolilla)
+                if(this.sacarBolilla() != bolilla)
                 {
                     devolverBolillas();
                     return false;
