@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using System;
 
 namespace BolilleroBiblioteca
 {
@@ -13,20 +12,19 @@ namespace BolilleroBiblioteca
         public int simularConHilos(Bolillero unBolillero, List<int> unaJugada, int cntSimulaciones, int cntHilos)
         {
             Task<int>[] tareas = new Task<int>[cntHilos];
-            int simulacionesPorHilo = cntSimulaciones/cntHilos;
-
+            int restoSXH = cntSimulaciones % cntHilos;
+            
             for (int i = 0; i < cntHilos; i++)
             {
                 var clon = (Bolillero)unBolillero.Clone();
-                tareas[i] = new Task<int>(() => clon.jugarNVeces(unaJugada, simulacionesPorHilo));
+                int simulacionesXH = cntSimulaciones / cntHilos + 1;
+                if(i >= restoSXH)
+                {
+                    simulacionesXH = cntSimulaciones / cntHilos;
+                }
+                tareas[i] = Task.Run(() => clon.jugarNVeces(unaJugada, simulacionesXH));
+                tareas[i].Wait();
             }
-
-            foreach (var tarea in tareas)
-            {
-                tarea.Start();
-            }
-
-            Task<int>.WaitAll(tareas);
 
             return tareas.Sum(x => x.Result);
         }
