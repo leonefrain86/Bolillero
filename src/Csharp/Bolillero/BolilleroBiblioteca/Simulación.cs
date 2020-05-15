@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using System;
 
 namespace BolilleroBiblioteca
 {
@@ -23,9 +24,9 @@ namespace BolilleroBiblioteca
                     simulacionesXH = cntSimulaciones / cntHilos;
                 }
                 tareas[i] = Task.Run(() => clon.jugarNVeces(unaJugada, simulacionesXH));
-                tareas[i].Wait();
             }
-
+            Task<int>.WaitAll(tareas);
+            
             return tareas.Sum(x => x.Result);
         }
         
