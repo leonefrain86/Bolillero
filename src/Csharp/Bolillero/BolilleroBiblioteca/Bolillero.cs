@@ -11,15 +11,15 @@ namespace BolilleroBiblioteca
 
         public Bolillero()
         {
-            bolillas = new List<int> { 0, 1 };
-            bolillasAfuera = new List<int> {3, 5, 6};
+            bolillas = new List<int> { 0};
+            bolillasAfuera = new List<int>();
         }
 
-        public Bolillero( List<int> bolillasC, List<int> bolillasAfueraC) 
-        {
-            this.bolillas = new List<int>(bolillasC);
-            this.bolillasAfuera = new List<int>(bolillasAfueraC);
-        }
+        // public Bolillero( List<int> bolillasC, List<int> bolillasAfueraC) 
+        // {
+        //     this.bolillas = new List<int>(bolillasC);
+        //     this.bolillasAfuera = new List<int>(bolillasAfueraC);
+        // }
 
         public void sacarBolilla()
         {
@@ -61,8 +61,10 @@ namespace BolilleroBiblioteca
             }
             return contador;
         }
-        
-        public object Clone() => new Bolillero(this.bolillas, this.bolillasAfuera);
+
+        // public object Clone() => new Bolillero(this.bolillas, this.bolillasAfuera);
+        public object Clone() => new Bolillero() { bolillasAfuera = new List<int>(this.bolillasAfuera),
+                                                   bolillas = new List<int>(this.bolillas)};
 
     }
 }

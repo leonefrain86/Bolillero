@@ -14,7 +14,7 @@ namespace BolilleroBiblioteca
         {
             Task<int>[] tareas = new Task<int>[cntHilos];
             int restoSXH = cntSimulaciones % cntHilos;
-            
+
             for (int i = 0; i < cntHilos; i++)
             {
                 var clon = (Bolillero)unBolillero.Clone();
@@ -24,6 +24,7 @@ namespace BolilleroBiblioteca
                     simulacionesXH = cntSimulaciones / cntHilos;
                 }
                 tareas[i] = Task.Run(() => clon.jugarNVeces(unaJugada, simulacionesXH));
+                
             }
             Task<int>.WaitAll(tareas);
             
