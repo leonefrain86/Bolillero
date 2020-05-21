@@ -11,15 +11,17 @@ namespace BolilleroBiblioteca
 
         public Bolillero()
         {
-            bolillas = new List<int> { 0};
+            bolillas = new List<int> ();
             bolillasAfuera = new List<int>();
         }
 
-        // public Bolillero( List<int> bolillasC, List<int> bolillasAfueraC) 
-        // {
-        //     this.bolillas = new List<int>(bolillasC);
-        //     this.bolillasAfuera = new List<int>(bolillasAfueraC);
-        // }
+        public Bolillero( int cantBolillas) : this()
+        {
+            for (int i = 0; i < cantBolillas; i++)
+            {
+                this.bolillas.Add(i);
+            }
+        }
 
         public void sacarBolilla()
         {
