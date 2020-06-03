@@ -20,11 +20,11 @@ namespace BolilleroConsola
             Simulación s = new Simulación();
 
             FH = DateTime.Now;
-            Console.WriteLine(s.simularSinHilos(unBolillero, bolillas, 1000000));
+            Console.WriteLine(s.simularSinHilos(unBolillero, bolillas, 10000000));
             Console.WriteLine($"Duración sin hilos: {DateTime.Now - FH}");
 
             FH = DateTime.Now;
-            Console.WriteLine(s.simularConHilos(unBolillero, bolillas, 1000000, 3));
+            Console.WriteLine(s.simularConHilos(unBolillero, bolillas, 10000000, 3));
             Console.WriteLine($"Duración con hilos: {DateTime.Now - FH}");
 
             // // CASO DE UNA SOLA JUGADA

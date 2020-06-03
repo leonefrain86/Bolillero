@@ -8,11 +8,13 @@ namespace BolilleroBiblioteca
     {
         public List<int> bolillas {get; set;}
         public List<int> bolillasAfuera {get; set;}
+        public Random aleatorio {get; set;}
 
         public Bolillero()
         {
             bolillas = new List<int> ();
             bolillasAfuera = new List<int>();
+            aleatorio = new Random();
         }
 
         public Bolillero( int cantBolillas) : this()
@@ -25,7 +27,7 @@ namespace BolilleroBiblioteca
 
         public void sacarBolilla()
         {
-            int bolilla =  this.bolillas[new Random().Next(bolillas.Count())];
+            int bolilla =  this.bolillas[aleatorio.Next(bolillas.Count())];
             bolillasAfuera.Add(bolilla);
             bolillas.Remove(bolilla);
         }
