@@ -2,14 +2,12 @@
 using BolilleroBiblioteca;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace BolilleroConsola
 {
     class Program
     {
-        // static async Task Main(string[] args)
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             DateTime FH;
             
@@ -17,22 +15,17 @@ namespace BolilleroConsola
             List<int> bolillas = new List<int> { 0, 1, 4};
             Simulación sml = new Simulación();
 
-            //No devuelve el resultado esperado
-            Console.WriteLine(sml.SimularConHilosAsync(unBolillero, bolillas, 10000000, 3));
-
-            // Hago uso de await pero se bloquea el resto de los procesos
-            // Console.WriteLine(await sml.SimularConHilosAsync(unBolillero, bolillas, 10000000, 3));  
-
             FH = DateTime.Now;
-            Console.WriteLine(sml.simularSinHilos(unBolillero, bolillas, 10000000));
+            Console.WriteLine(sml.simularSinHilos(unBolillero, bolillas, 100000000));
             Console.WriteLine($"Duración sin hilos: {DateTime.Now - FH}");
 
             FH = DateTime.Now;
-            Console.WriteLine(sml.simularConHilos(unBolillero, bolillas, 10000000, 3));
+            Console.WriteLine(sml.simularConHilos(unBolillero, bolillas, 100000000, 3));
             Console.WriteLine($"Duración con hilos: {DateTime.Now - FH}");
 
-            // Una idea que tuve pero no funcionó ya que eran diferentes tipos de metodos
-            // await Task.WhenAll(simulacion.simularConHilos(), simulacion.SimularConHilosAsync(), simulacion.simularSinHilos())
+            FH = DateTime.Now;
+            Console.WriteLine(await sml.SimularConHilosAsync(unBolillero, bolillas, 100000000, 3));
+            Console.WriteLine($"Duración con hilos y Async: {DateTime.Now - FH}");
             
             // // CASO DE UNA SOLA JUGADA
             // Console.WriteLine($"Gano: {unBolillero.unaJugada(bolillas)}");
