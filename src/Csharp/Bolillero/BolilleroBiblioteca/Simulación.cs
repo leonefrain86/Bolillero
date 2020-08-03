@@ -1,7 +1,8 @@
 using System.Collections.Generic;
-// using System.Collections.Concurrent;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using System.Linq;
+using System;
 
 namespace BolilleroBiblioteca
 {
@@ -18,7 +19,7 @@ namespace BolilleroBiblioteca
             for (int i = 0; i < cntHilos; i++)
             {
                 var clon = (Bolillero)unBolillero.Clone();
-                int simulacionesXH = cntSimulaciones / cntHilos + 1;
+                int simulacionesXH = (cntSimulaciones / cntHilos) + 1;
                 if(i >= restoSXH)
                 {
                     simulacionesXH = cntSimulaciones / cntHilos;
@@ -39,7 +40,7 @@ namespace BolilleroBiblioteca
             for (int i = 0; i < cntHilos; i++)
             {
                 var clon = (Bolillero)unBolillero.Clone();
-                int simulacionesXH = cntSimulaciones / cntHilos + 1;
+                int simulacionesXH = (cntSimulaciones / cntHilos) + 1;
                 if (i >= restoSXH)
                 {
                     simulacionesXH = cntSimulaciones / cntHilos;
@@ -54,53 +55,53 @@ namespace BolilleroBiblioteca
         public async Task<int> SimularParallelAsync (Bolillero unBolillero, List<int> unaJugada,
                                                       int cntSimulaciones, int cntHilos)
         {
-            Task<int>[] tareas = new Task<int>[cntHilos]; // Coleccion de task que cuando finaliza devuelve int
-            // ConcurrentBag<int> tareas2 = new ConcurrentBag<int>[cntHilos]; // Coleccion segura para hilos
+            // ConcurrentBag<int>[] tareasConcurrent = new ConcurrentBag<int>[cntHilos]; // Coleccion segura para hilos
+            
             List<int> tareasList = new List<int>();
 
             int restoSXH = cntSimulaciones % cntHilos;
 
+            // Parallel.For
 
             await Task.Run(() => Parallel.For(0, cntHilos, i => {
                 var clon = (Bolillero)unBolillero.Clone();
-                int simulacionesXH = cntSimulaciones / cntHilos + 1;
-                if (i >= restoSXH)
-                {
+                int simulacionesXH = (cntSimulaciones / cntHilos) + 1;
+                if (i >= restoSXH) {
                     simulacionesXH = cntSimulaciones / cntHilos;
                 }
                 tareasList.Add(clon.jugarNVeces(unaJugada, simulacionesXH));
             }));
 
-            // Parallel.ForEach(tareas, tarea => {
-            //     var clon = (Bolillero)unBolillero.Clone();
-                
-            //     tarea = Task.Run(() => clon.jugarNVeces(unaJugada, cntSimulaciones/tareas.Count()));
-                
-            // });
+            return tareasList.Sum();
 
-            // Parallel.ForEach(tareas, x => x.Start());
-
-            // Parallel.For(0, words.Length, i => results[i] = AddB(words[i]));
-
-            // Parallel.For(inicio, fin, accion);
-            // Parallel.ForEach(Lista, accion);
-
-            // int restoSXH = cntSimulaciones % cntHilos;
-
-            // for (int i = 0; i < cntHilos; i++)
-            // {
-            //     var clon = (Bolillero)unBolillero.Clone();
-            //     int simulacionesXH = cntSimulaciones / cntHilos + 1;
-            //     if (i >= restoSXH)
-            //     {
-            //         simulacionesXH = cntSimulaciones / cntHilos;
-            //     }
-            //     tareas[i] = Task.Run(() => clon.jugarNVeces(unaJugada, simulacionesXH));
-            // }
-            // Parallel.ForEach(tareas, x => x.Start());
             
 
-            return tareasList.Sum();
+            // Parallel.ForEach 
+            // Nota: Falla en su ejecución
+
+            // Task<int>[] tareas = new Task<int>[cntHilos]; 
+
+            // await Task.Run(() => Parallel.ForEach(tareas, tarea => {
+            //     var clon = (Bolillero)unBolillero.Clone();
+            //     tarea = Task.Run(()=> clon.jugarNVeces(unaJugada, cntSimulacionesXH(cntSimulaciones, cntHilos)));
+            //     cntSimulaciones = cntSimulaciones - cntSimulacionesXH(cntSimulaciones, cntHilos);
+            // }));
+            // return tareas.Sum(x => x.Result);
+
+
+        }
+
+        // 
+        public int cntSimulacionesXH (int cntSimulaciones, int cntHilos)
+        {
+            if (cntSimulaciones % cntHilos == 0)
+            {
+                return cntSimulaciones / cntHilos;
+            }
+            else
+            {
+                return ((cntSimulaciones / cntHilos) + 1);
+            }  
         }
     }
 }
