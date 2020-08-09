@@ -53,7 +53,7 @@ namespace BolilleroBiblioteca
         }
 
         public async Task<int> SimularParallelAsync (Bolillero unBolillero, List<int> unaJugada,
-                                                      int cntSimulaciones, int cntHilos)
+                                                    int cntSimulaciones, int cntHilos)
         {
             // ConcurrentBag<int>[] tareasConcurrent = new ConcurrentBag<int>[cntHilos]; // Coleccion segura para hilos
             
@@ -63,14 +63,19 @@ namespace BolilleroBiblioteca
 
             // Parallel.For
 
-            await Task.Run(() => Parallel.For(0, cntHilos, i => {
-                var clon = (Bolillero)unBolillero.Clone();
-                int simulacionesXH = (cntSimulaciones / cntHilos) + 1;
-                if (i >= restoSXH) {
-                    simulacionesXH = cntSimulaciones / cntHilos;
-                }
-                tareasList.Add(clon.jugarNVeces(unaJugada, simulacionesXH));
-            }));
+            await   Task.Run(() =>
+                                Parallel.For(0, cntHilos, i =>
+                                                {
+                                                    var clon = (Bolillero)unBolillero.Clone();
+                                                    int simulacionesXH = (cntSimulaciones / cntHilos) + 1;
+                                                    if (i >= restoSXH)
+                                                    {
+                                                        simulacionesXH = cntSimulaciones / cntHilos;
+                                                    }
+                                                    tareasList.Add(clon.jugarNVeces(unaJugada, simulacionesXH));
+                                                }
+                                            )
+                            );
 
             return tareasList.Sum();
 
