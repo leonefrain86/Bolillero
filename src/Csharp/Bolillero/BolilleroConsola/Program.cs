@@ -39,12 +39,12 @@ namespace BolilleroConsola
 
             // Console.WriteLine(50 / 4);
         }
-        static void informeBolillero(Bolillero bolillero)
-        {
-            foreach (int bolilla in bolillero.bolillas)
-            {
-                Console.WriteLine($"bolilla: {bolilla}");
-            }
-        }
+        // static void informeBolillero(Bolillero bolillero)
+        // {
+        //     foreach (int bolilla in bolillero.bolillas)
+        //     {
+        //         Console.WriteLine($"bolilla: {bolilla}");
+        //     }
+        // }
     }
 }
