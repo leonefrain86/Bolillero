@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Collections.Concurrent;
-using System.Threading.Tasks;
 using System.Linq;
-using System;
+using System.Threading.Tasks;
 
 namespace BolilleroBiblioteca
 {
@@ -67,7 +65,7 @@ namespace BolilleroBiblioteca
                                                     int simulacionesXH = (cntSimulaciones / cntHilos) + 1;
                                                     if (i >= restoSXH)
                                                     {
-                                                        simulacionesXH = cntSimulaciones / cntHilos;
+                                                        simulacionesXH--;
                                                     }        
                                                     tareasArrays[i] = clon.jugarNVeces(unaJugada, simulacionesXH);
                                                 }
