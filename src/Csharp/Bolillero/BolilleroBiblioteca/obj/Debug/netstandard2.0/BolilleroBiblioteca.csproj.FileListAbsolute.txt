@@ -1,9 +1,0 @@
-C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroBiblioteca\bin\Debug\netstandard2.0\BolilleroBiblioteca.deps.json
-C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroBiblioteca\bin\Debug\netstandard2.0\BolilleroBiblioteca.dll
-C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroBiblioteca\bin\Debug\netstandard2.0\BolilleroBiblioteca.pdb
-C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroBiblioteca\obj\Debug\netstandard2.0\BolilleroBiblioteca.csprojAssemblyReference.cache
-C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroBiblioteca\obj\Debug\netstandard2.0\BolilleroBiblioteca.csproj.CoreCompileInputs.cache
-C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroBiblioteca\obj\Debug\netstandard2.0\BolilleroBiblioteca.AssemblyInfoInputs.cache
-C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroBiblioteca\obj\Debug\netstandard2.0\BolilleroBiblioteca.AssemblyInfo.cs
-C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroBiblioteca\obj\Debug\netstandard2.0\BolilleroBiblioteca.dll
-C:\Users\efrainleon\Documents\GitHub\Bolillero\src\Csharp\Bolillero\BolilleroBiblioteca\obj\Debug\netstandard2.0\BolilleroBiblioteca.pdb
