@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using BolilleroBiblioteca;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,27 +10,30 @@ namespace BolilleroConsola
     {
         static async Task Main(string[] args)
         {
-            DateTime FH;
-            
+            Stopwatch stopWatch = new Stopwatch();
             Bolillero unBolillero = new Bolillero(10);
             List<int> bolillas = new List<int> { 1, 5, 3};
             Simulación sml = new Simulación();
 
-            FH = DateTime.Now;
+            stopWatch.Start();
             Console.WriteLine(sml.simularSinHilos(unBolillero, bolillas, 10000000));
-            Console.WriteLine($"Duración sin hilos: {DateTime.Now - FH}");
+            stopWatch.Stop();
+            Console.WriteLine($"Duración sin hilos: {stopWatch.Elapsed}");
 
-            FH = DateTime.Now;
+            stopWatch.Restart();
             Console.WriteLine(sml.simularConHilos(unBolillero, bolillas, 10000000, 3));
-            Console.WriteLine($"Duración con hilos: {DateTime.Now - FH}");
+            stopWatch.Stop();
+            Console.WriteLine($"Duración con hilos: {stopWatch.Elapsed}");
 
-            FH = DateTime.Now;
+            stopWatch.Restart();
             Console.WriteLine(await sml.SimularConHilosAsync(unBolillero, bolillas, 10000000, 3));
-            Console.WriteLine($"Duración con hilos y Async: {DateTime.Now - FH}");
+            stopWatch.Stop();
+            Console.WriteLine($"Duración con hilos y Async: {stopWatch.Elapsed}");
 
-            FH = DateTime.Now;
+            stopWatch.Restart();
             Console.WriteLine(await sml.SimularParallelAsync(unBolillero, bolillas, 10000000, 3));
-            Console.WriteLine($"Duración con Parallel y Async: {DateTime.Now - FH}");
+            stopWatch.Stop();
+            Console.WriteLine($"Duración con Parallel y Async: {stopWatch.Elapsed}");
             
             // // CASO DE UNA SOLA JUGADA
             // Console.WriteLine($"Gano: {unBolillero.unaJugada(bolillas)}");
