@@ -6,6 +6,10 @@ namespace BolilleroBiblioteca
 {
     public class Simulación
     {
+        internal Simulación()
+        {
+
+        }
         public int simularSinHilos(Bolillero unBolillero, List<int> unaJugada, int cntSimulaciones) 
                     => unBolillero.jugarNVeces(unaJugada,cntSimulaciones);
 
@@ -74,18 +78,6 @@ namespace BolilleroBiblioteca
 
             return tareasArrays.Sum();
 
-        }
-
-        // public int cntSimulacionesXH (int cntSimulaciones, int cntHilos)
-        // {
-        //     if (cntSimulaciones % cntHilos == 0)
-        //     {
-        //         return cntSimulaciones / cntHilos;
-        //     }
-        //     else
-        //     {
-        //         return ((cntSimulaciones / cntHilos) + 1);
-        //     }  
-        // }
+        }        
     }
 }
