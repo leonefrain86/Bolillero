@@ -16,7 +16,7 @@ namespace BolilleroConsola
             /*pensar que tiene que devolver cualquiera de los metodos
               Set... para que la llamadas encadenadas sean validas.
               CrearSimulacion() es el unico método que devuelve un obj Simulacion*/
-            var sml = bs.SetBollilero(unBolillero)
+            var sml = bs.SetBolillero(unBolillero)
                         .SetBolillas(bolillas)
                         .SetSimulaciones(10000000)
                         .SetHilos(3)
