@@ -1,46 +1,32 @@
-﻿using BolilleroBiblioteca;
-using System;
+﻿using System;
+using BolilleroBiblioteca;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace BolilleroConsola
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
-            Bolillero unBolillero = new Bolillero(10);
-            List<int> bolillas = new List<int> { 1, 5, 3};
-            var bs = new BuilderSimulacion();
+            Bolillero unBolillero = new Bolillero();
 
-            /*pensar que tiene que devolver cualquiera de los metodos
-              Set... para que la llamadas encadenadas sean validas.
-              CrearSimulacion() es el unico método que devuelve un obj Simulacion*/
-            var sml = bs.SetBolillero(unBolillero)
-                        .SetBolillas(bolillas)
-                        .SetSimulaciones(10000000)
-                        .SetHilos(3)
-                        .CrearSimulacion();
+            // SOLO SE USAN 5 BOLILLAS PARA JUGAR
+            List<int> bolillas = new List<int> { 2, 4, 6, 1, 3 };
+            
+            // CASO DE UNA SOLA JUGADA
+            Console.WriteLine($"Gano: {unBolillero.unaJugada(bolillas)}");
 
-            sml.IniciarCronometro();
-            Console.WriteLine(sml.simularSinHilos());
-            sml.DetenerCronometro();
-            Console.WriteLine($"Duración sin hilos: {sml.Duracion}");
-
-            sml.ReiniciarCronometro();
-            Console.WriteLine(sml.simularConHilos());
-            sml.DetenerCronometro();
-            Console.WriteLine($"Duración con hilos: {sml.Duracion}");
-
-            sml.ReiniciarCronometro();
-            Console.WriteLine(await sml.SimularConHilosAsync());
-            sml.DetenerCronometro();
-            Console.WriteLine($"Duración con hilos y Async: {sml.Duracion}");
-
-            sml.ReiniciarCronometro();
-            Console.WriteLine(await sml.SimularParallelAsync());
-            sml.DetenerCronometro();
-            Console.WriteLine($"Duración con Parallel y Async: {sml.Duracion}");
-        }        
+            // CASO DE MAS DE UNA JUGADA
+            Console.WriteLine($"Usted gano: {unBolillero.jugarNVeces(bolillas,1000000)} veces");
+            informeBolillero(unBolillero);
+        }
+        static void informeBolillero(Bolillero bolillero)
+        {
+            foreach (int bolilla in bolillero.bolillas)
+            {
+                Console.WriteLine($"bolilla: {bolilla}");
+            }
+        }
     }
 }
