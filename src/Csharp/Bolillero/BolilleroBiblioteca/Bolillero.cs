@@ -4,37 +4,46 @@ using System.Linq;
 
 namespace BolilleroBiblioteca
 {
-    public class Bolillero
+    public class Bolillero: ICloneable
     {
         public List<int> bolillas {get; set;}
-        public List<int> bolillasSacadas {get; set;}
+        public List<int> bolillasAfuera {get; set;}
+        public Random aleatorio {get; set;}
 
         public Bolillero()
         {
-            bolillas = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            bolillasSacadas = new List<int>();
+            bolillas = new List<int> ();
+            bolillasAfuera = new List<int>();
+            aleatorio = new Random();
+        }
+
+        public Bolillero( int cantBolillas) : this()
+        {
+            for (int i = 0; i < cantBolillas; i++)
+            {
+                this.bolillas.Add(i);
+            }
         }
 
         public void sacarBolilla()
         {
-            int bolilla =  this.bolillas[new Random().Next(bolillas.Count())];
-            bolillasSacadas.Add(bolilla);
+            int bolilla =  this.bolillas[aleatorio.Next(bolillas.Count())];
+            bolillasAfuera.Add(bolilla);
             bolillas.Remove(bolilla);
         }
 
-        public void devolverBolillas() 
+        public void devolverBolillas()
         {
-            this.bolillas.AddRange(bolillasSacadas);
-            this.bolillasSacadas.Clear();
+            this.bolillas.AddRange(bolillasAfuera);
+            this.bolillasAfuera.Clear();
         }
-
 
         public bool unaJugada (List<int> bolillas)
         {
             foreach (int bolilla  in  bolillas )
             {
                 this.sacarBolilla();
-                if(bolillasSacadas.Last() != bolilla)
+                if(bolillasAfuera.Last() != bolilla)
                 {
                     devolverBolillas();
                     return false;
@@ -56,5 +65,10 @@ namespace BolilleroBiblioteca
             }
             return contador;
         }
+
+        // public object Clone() => new Bolillero(this.bolillas, this.bolillasAfuera);
+        public object Clone() => new Bolillero() { bolillasAfuera = new List<int>(this.bolillasAfuera),
+                                                   bolillas = new List<int>(this.bolillas)};
+
     }
 }
